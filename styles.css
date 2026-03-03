@@ -479,6 +479,17 @@ body {
   }
 }
 
+/* Gold line shimmer — sweeps left to right over any horizontal gold line */
+@keyframes goldLineSweep {
+  0% {
+    background-position: -80% 0, 0 0;
+  }
+
+  100% {
+    background-position: 180% 0, 0 0;
+  }
+}
+
 .hero-scroll-indicator span {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -504,7 +515,11 @@ body {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255, 245, 200, 0.7) 50%, transparent 100%) no-repeat,
+    linear-gradient(90deg, transparent, var(--gold), transparent);
+  background-size: 40% 100%, 100% 100%;
+  animation: goldLineSweep 7s ease-in-out infinite;
 }
 
 .stats-container {

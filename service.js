@@ -26,10 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateActiveToc() {
         const scrollY = window.scrollY + 140;
-        let current = null;
+
+        // Default to the first section — ensures top-of-page has an active link
+        let current = sections.length > 0 ? sections[0].id : null;
+
         sections.forEach(sec => {
+            // A section becomes active once its top edge has passed the scroll threshold
             if (sec.offsetTop <= scrollY) current = sec.id;
         });
+
         tocLinks.forEach(link => {
             const href = link.getAttribute('href')?.slice(1);
             link.classList.toggle('toc-active', href === current);

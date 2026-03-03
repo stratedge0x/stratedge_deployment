@@ -3,14 +3,14 @@
    Supplements styles.css for dedicated service pages
    ============================================================ */
 
-/* ── Base overrides for service pages ─────────────────────── */
+/*  Base overrides for service pages ─ */
 .service-page {
     background: var(--navy);
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    SERVICE HERO
-   ══════════════════════════════════════════════════════════════ */
+    */
 .svc-hero {
     min-height: 100vh;
     position: relative;
@@ -179,9 +179,9 @@
     background: linear-gradient(to bottom, var(--gold-dark), transparent);
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    CONTENT AREA — Two-column layout (TOC + Article)
-   ══════════════════════════════════════════════════════════════ */
+    */
 .svc-content {
     padding: 5rem 0 0;
     background: var(--navy);
@@ -195,7 +195,11 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(184, 151, 90, 0.25), transparent);
+    background:
+        linear-gradient(90deg, transparent 0%, rgba(255, 245, 200, 0.55) 50%, transparent 100%) no-repeat,
+        linear-gradient(90deg, transparent, rgba(184, 151, 90, 0.25), transparent);
+    background-size: 35% 100%, 100% 100%;
+    animation: goldLineSweep 9s ease-in-out infinite;
 }
 
 .svc-content-inner {
@@ -208,7 +212,7 @@
     align-items: start;
 }
 
-/* ── Table of Contents ───────────────────────────────────── */
+/*  Table of Contents ─ */
 .svc-toc {
     position: sticky;
     top: 100px;
@@ -280,12 +284,12 @@
     color: var(--navy);
 }
 
-/* ── Article ─────────────────────────────────────────────── */
+/*  Article  */
 .svc-article {
     padding-bottom: 8rem;
 }
 
-/* ── Chapter ─────────────────────────────────────────────── */
+/*  Chapter  */
 .svc-chapter {
     display: grid;
     grid-template-columns: 60px 1fr;
@@ -361,7 +365,7 @@
     margin-top: 0.1em;
 }
 
-/* ── Pull Quote ──────────────────────────────────────────── */
+/*  Pull Quote  */
 .svc-pullquote {
     margin: 4rem 0 5rem;
     padding: 2.5rem 3rem;
@@ -402,7 +406,7 @@
     font-style: normal;
 }
 
-/* ── Section divider with icon ───────────────────────────── */
+/*  Section divider with icon ─ */
 .svc-section-divider {
     display: flex;
     align-items: center;
@@ -423,9 +427,9 @@
     flex-shrink: 0;
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    PILLARS OF RECOVERY
-   ══════════════════════════════════════════════════════════════ */
+    */
 .svc-pillars-recovery {
     margin-bottom: 6rem;
     scroll-margin-top: 110px;
@@ -465,7 +469,11 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-dark), transparent);
+    background:
+        linear-gradient(90deg, transparent 0%, rgba(255, 248, 210, 0.65) 50%, transparent 100%) no-repeat,
+        linear-gradient(90deg, var(--gold), var(--gold-dark), transparent);
+    background-size: 30% 100%, 100% 100%;
+    animation: goldLineSweep 6s ease-in-out infinite;
 }
 
 .recovery-pillar:hover {
@@ -547,9 +555,9 @@
     color: var(--gold-dark);
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    CONSULTATION CTA BANNER
-   ══════════════════════════════════════════════════════════════ */
+    */
 .svc-cta-banner {
     margin-bottom: 6rem;
     background: linear-gradient(135deg, var(--navy-mid), #0E1A30);
@@ -566,7 +574,11 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-dark), transparent);
+    background:
+        linear-gradient(90deg, transparent 0%, rgba(255, 248, 210, 0.7) 50%, transparent 100%) no-repeat,
+        linear-gradient(90deg, var(--gold), var(--gold-dark), transparent);
+    background-size: 30% 100%, 100% 100%;
+    animation: goldLineSweep 8s ease-in-out infinite 1.5s;
 }
 
 .svc-cta-banner::after {
@@ -697,9 +709,9 @@
     font-style: italic;
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    OTHER SERVICES (also section)
-   ══════════════════════════════════════════════════════════════ */
+    */
 .svc-also {
     margin-bottom: 2rem;
 }
@@ -765,9 +777,9 @@
     transform: translateX(5px);
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* 
    RESPONSIVE
-   ══════════════════════════════════════════════════════════════ */
+    */
 @media (max-width: 1024px) {
     .svc-content-inner {
         grid-template-columns: 200px 1fr;
