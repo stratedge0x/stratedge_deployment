@@ -165,6 +165,10 @@ function initForm() {
 
     try {
       const data = new FormData(form);
+      // Web3Forms free plan doesn't support Turnstile server-side verification.
+      // Turnstile still protects the page client-side — we just strip the token
+      // before submitting so Web3Forms doesn't treat it as a Pro feature request.
+      data.delete('cf-turnstile-response');
 
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
