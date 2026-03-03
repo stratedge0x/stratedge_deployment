@@ -158,14 +158,6 @@ function initForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validate Cloudflare Turnstile token is present
-    const tokenInput = form.querySelector('[name="cf-turnstile-response"]');
-    const token = tokenInput?.value;
-    if (!token) {
-      showStatus('⚠ Please complete the security check.', '#8B7A3A');
-      return;
-    }
-
     // UI: loading state
     const originalHTML = btn.innerHTML;
     btn.innerHTML = '<span>Sending…</span>';
@@ -187,7 +179,6 @@ function initForm() {
         btn.style.background = '#2E5E2E';
         btn.style.color = '#AADDAA';
         form.reset();
-        // Reset Turnstile widget for a fresh submission
         if (window.turnstile) window.turnstile.reset();
         setTimeout(() => {
           btn.innerHTML = originalHTML;
@@ -196,12 +187,14 @@ function initForm() {
           btn.disabled = false;
         }, 4000);
       } else {
+        // Surface the real API error message
+        console.error('Web3Forms error:', result);
         throw new Error(result.message || 'Submission failed');
       }
 
     } catch (err) {
-      console.error('Form error:', err);
-      btn.innerHTML = '<span>✗ Error — Please retry</span>';
+      console.error('Form submission error:', err.message);
+      btn.innerHTML = `<span>✗ ${err.message || 'Error — Please retry'}</span>`;
       btn.style.background = '#5E2A2A';
       btn.style.color = '#FFAAAA';
       if (window.turnstile) window.turnstile.reset();
@@ -210,21 +203,10 @@ function initForm() {
         btn.style.background = '';
         btn.style.color = '';
         btn.disabled = false;
-      }, 3500);
+      }, 5000);
     }
   });
-
-  function showStatus(msg, color) {
-    const el = document.createElement('p');
-    el.textContent = msg;
-    el.style.cssText = `color:${color};font-size:0.8rem;margin-top:0.75rem;letter-spacing:0.05em;`;
-    el.id = 'formStatus';
-    document.getElementById('formStatus')?.remove();
-    form.appendChild(el);
-    setTimeout(() => el.remove(), 4000);
-  }
 }
-
 
 // ── DOMContentLoaded ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
