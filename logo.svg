@@ -1,0 +1,99 @@
+<svg viewBox="0 0 280 310" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <!-- Blade 1: Cyan to mid-blue -->
+    <linearGradient id="b1left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#5FD8FA"/>
+      <stop offset="100%" stop-color="#2474C8"/>
+    </linearGradient>
+    <linearGradient id="b1right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#3AA8E0"/>
+      <stop offset="100%" stop-color="#1655A2"/>
+    </linearGradient>
+
+    <!-- Blade 2: mid-blue to deep blue -->
+    <linearGradient id="b2left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#1E6BB8"/>
+      <stop offset="100%" stop-color="#0E3578"/>
+    </linearGradient>
+    <linearGradient id="b2right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#165099"/>
+      <stop offset="100%" stop-color="#092660"/>
+    </linearGradient>
+
+    <!-- Blade 3: deep blue to darkest navy -->
+    <linearGradient id="b3left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0D2C6A"/>
+      <stop offset="100%" stop-color="#060F38"/>
+    </linearGradient>
+    <linearGradient id="b3right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#091E58"/>
+      <stop offset="100%" stop-color="#040B2D"/>
+    </linearGradient>
+  </defs>
+
+  <!--
+    The logo is a 3D layered "A"/arrow shape consisting of 3 blades.
+    Each blade has:
+      - A large LEFT FACE (the main visible triangle, lighter)
+      - A small RIGHT FACE (the top ridge, slightly darker)
+    Blades are separated by white (transparent) gaps.
+    The center spine runs from the apex down vertically.
+  -->
+
+  <!-- ══════════════════════════════
+       BLADE 1  (top, lightest)
+       ══════════════════════════════ -->
+  <!-- Left face: apex → bottom-left → bottom-right → right-shoulder -->
+  <polygon
+    points="138,14  40,108  78,102  138,64"
+    fill="url(#b1left)"
+  />
+  <!-- Right face (top ridge): apex → right-shoulder → right-wing-tip → right-tip-top -->
+  <polygon
+    points="138,14  138,64  180,80  192,52"
+    fill="url(#b1right)"
+  />
+
+  <!-- ══════════════════════════════
+       WHITE GAP 1
+       (naturally transparent — no element needed)
+       ══════════════════════════════ -->
+
+  <!-- ══════════════════════════════
+       BLADE 2  (middle, medium blue)
+       ══════════════════════════════ -->
+  <!-- Left face -->
+  <polygon
+    points="36,116  74,110  138,72  138,118  32,122"
+    fill="url(#b2left)"
+  />
+  <!-- Right face (top ridge) -->
+  <polygon
+    points="138,72  184,88  186,128  138,118"
+    fill="url(#b2right)"
+  />
+
+  <!-- ══════════════════════════════
+       WHITE GAP 2
+       ══════════════════════════════ -->
+
+  <!-- ══════════════════════════════
+       BLADE 3  (bottom, darkest)
+       ══════════════════════════════ -->
+  <!-- Left face — extends to long bottom-left tail point -->
+  <polygon
+    points="28,130  66,122  138,126  138,185  14,200"
+    fill="url(#b3left)"
+  />
+  <!-- Right face (top ridge) -->
+  <polygon
+    points="138,126  180,132  178,180  138,185"
+    fill="url(#b3right)"
+  />
+  <!-- Bottom tail finlet (the sharp bottom-right point) -->
+  <polygon
+    points="66,122  28,130  14,200  108,260  138,185  138,126"
+    fill="url(#b3left)"
+    opacity="0.5"
+  />
+</svg>
