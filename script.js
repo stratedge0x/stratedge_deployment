@@ -153,21 +153,78 @@ function initParallax() {
 function initForm() {
   const form = document.getElementById('contactForm');
   const btn = document.getElementById('submitBtn');
-  form?.addEventListener('submit', async (e) => {
+  if (!form || !btn) return;
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Validate Cloudflare Turnstile token is present
+    const tokenInput = form.querySelector('[name="cf-turnstile-response"]');
+    const token = tokenInput?.value;
+    if (!token) {
+      showStatus('⚠ Please complete the security check.', '#8B7A3A');
+      return;
+    }
+
+    // UI: loading state
+    const originalHTML = btn.innerHTML;
     btn.innerHTML = '<span>Sending…</span>';
     btn.disabled = true;
-    await new Promise(r => setTimeout(r, 1800));
-    btn.innerHTML = '<span>✓ Request Received</span>';
-    btn.style.background = '#3A6B3A';
-    setTimeout(() => {
-      btn.innerHTML = `<span>Submit Consultation Request</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
-      btn.style.background = '';
-      btn.disabled = false;
-      form.reset();
-    }, 3000);
+
+    try {
+      const data = new FormData(form);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Success state
+        btn.innerHTML = '<span>✓ Request Received</span>';
+        btn.style.background = '#2E5E2E';
+        btn.style.color = '#AADDAA';
+        form.reset();
+        // Reset Turnstile widget for a fresh submission
+        if (window.turnstile) window.turnstile.reset();
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.disabled = false;
+        }, 4000);
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+
+    } catch (err) {
+      console.error('Form error:', err);
+      btn.innerHTML = '<span>✗ Error — Please retry</span>';
+      btn.style.background = '#5E2A2A';
+      btn.style.color = '#FFAAAA';
+      if (window.turnstile) window.turnstile.reset();
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3500);
+    }
   });
+
+  function showStatus(msg, color) {
+    const el = document.createElement('p');
+    el.textContent = msg;
+    el.style.cssText = `color:${color};font-size:0.8rem;margin-top:0.75rem;letter-spacing:0.05em;`;
+    el.id = 'formStatus';
+    document.getElementById('formStatus')?.remove();
+    form.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
 }
+
 
 // ── DOMContentLoaded ───────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {

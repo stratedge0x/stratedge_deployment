@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -301,6 +302,13 @@
         <p class="contact-desc">All engagements are protected by strict NDA and professional confidentiality.</p>
       </div>
       <form class="contact-form" id="contactForm">
+        <!-- Web3Forms required fields -->
+        <input type="hidden" name="access_key" value="a6a6fb89-8378-4c3f-b4bc-57f61ff5ab13" />
+        <input type="hidden" name="to" value="stratedgeadvisory@proton.me" />
+        <input type="hidden" name="subject" value="New Consultation Request — StratEdge Advisory" />
+        <input type="hidden" name="from_name" value="StratEdge Website" />
+        <!-- Honeypot spam trap -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
         <div class="form-row">
           <div class="form-group">
             <label for="fullName">Full Name</label>
@@ -331,6 +339,10 @@
           <label for="message">Your Challenge</label>
           <textarea id="message" name="message" rows="5"
             placeholder="Briefly describe your strategic challenge or objective..."></textarea>
+        </div>
+        <!-- Cloudflare Turnstile — invisible challenge -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAClyEQrNm732jYoL" data-theme="dark" data-size="flexible"
+          style="margin-bottom: 0.5rem">
         </div>
         <button type="submit" class="btn-submit" id="submitBtn">
           <span>Submit Consultation Request</span>
