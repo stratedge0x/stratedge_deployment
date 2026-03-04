@@ -114,7 +114,14 @@ function initNavbar() {
   const hamburger = document.getElementById('navHamburger');
   const links = document.getElementById('navLinks');
   hamburger?.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const isOpen = links.classList.toggle('open');
+    if (isOpen) {
+      // Auto-expand dropdowns on mobile as requested
+      links.querySelectorAll('.nav-dropdown').forEach(li => {
+        li.classList.add('open');
+        li.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'true');
+      });
+    }
   });
   // Close on link click
   links?.querySelectorAll('a').forEach(a => {
