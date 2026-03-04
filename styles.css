@@ -1541,6 +1541,8 @@ body {
     flex-direction: column;
     gap: 0.5rem;
     animation: fadeIn 0.4s ease;
+    transform: none;
+    /* Crucial: Remove desktop translateX(-50%) */
   }
 
   .nav-dropdown-menu li a {
