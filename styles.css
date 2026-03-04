@@ -171,15 +171,6 @@ body {
   height: 44px;
 }
 
-/* Hide leftover text spans next to PNG logo */
-.nav-logo .logo-wordmark,
-.nav-logo .logo-divider,
-.nav-logo .logo-advisory,
-.footer-logo .logo-wordmark,
-.footer-logo .logo-divider,
-.footer-logo .logo-advisory {
-  display: none;
-}
 
 
 .nav-links {
