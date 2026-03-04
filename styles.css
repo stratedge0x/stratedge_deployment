@@ -95,13 +95,13 @@ body {
 
 .nav-logo {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: baseline;
+  gap: 0.5rem;
   text-decoration: none;
 }
 
