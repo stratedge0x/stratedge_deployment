@@ -1498,8 +1498,8 @@ body {
     bottom: 0;
     background: rgba(10, 18, 35, 0.98);
     border-top: 1px solid var(--navy-border);
-    padding: 3.5rem 2.5rem;
-    gap: 2rem;
+    padding: 3rem 1.5rem;
+    gap: 1.5rem;
     align-items: flex-start;
     z-index: 1000;
     overflow-y: auto;
@@ -1526,13 +1526,13 @@ body {
     background: transparent;
     border: none;
     border-left: 1px solid var(--gold-dark);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
     opacity: 1;
     pointer-events: all;
     display: none;
     box-shadow: none;
-    padding: 0 0 0 1.5rem;
+    padding: 0 0 0 1rem;
     backdrop-filter: none;
   }
 
@@ -1544,9 +1544,12 @@ body {
   }
 
   .nav-dropdown-menu li a {
-    padding: 1rem 0;
-    font-size: 1.05rem;
+    padding: 0.75rem 0;
+    font-size: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: normal;
+    line-height: 1.4;
+    display: block;
   }
 
   .nav-dropdown-menu li:last-child a {
