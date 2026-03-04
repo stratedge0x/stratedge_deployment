@@ -156,6 +156,7 @@ body {
   font-weight: 300;
 }
 
+/* Logo text */
 .logo-advisory {
   font-family: var(--font-sans);
   font-size: 1rem;
