@@ -23,10 +23,12 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <img src="images/logo_nobg.png" alt="StratEdge Advisory" class="logo-png" />
-                <span class="logo-wordmark"><span class="logo-strat">Strat</span><span
-                        class="logo-edge">Edge</span></span>
-                <span class="logo-divider">|</span>
-                <span class="logo-advisory">Advisory</span>
+                <span class="logo-text-group">
+                    <span class="logo-wordmark"><span class="logo-strat">Strat</span><span
+                            class="logo-edge">Edge</span></span>
+                    <span class="logo-divider">|</span>
+                    <span class="logo-advisory">Advisory</span>
+                </span>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li class="nav-dropdown">
@@ -304,23 +306,7 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Basic navbar for this page
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.getElementById('navHamburger');
-            const links = document.getElementById('navLinks');
-            hamburger?.addEventListener('click', () => links.classList.toggle('open'));
-            links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-            // Dropdown toggle
-            document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const li = btn.closest('.nav-dropdown');
-                    li.classList.toggle('open');
-                    btn.setAttribute('aria-expanded', li.classList.contains('open'));
-                });
-            });
-        });
-    </script>
+
 </body>
 
 </html>

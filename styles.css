@@ -105,6 +105,13 @@ body {
   text-decoration: none;
 }
 
+/* Groups the text spans so they share a baseline, independent of the PNG height */
+.logo-text-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .logo-icon {
   width: 36px;
   height: 40px;
