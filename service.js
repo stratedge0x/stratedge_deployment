@@ -89,3 +89,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.06 });
     rPillars.forEach(el => rObserver.observe(el));
 });
+
+// ── Dropdown nav init for service pages ──────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
+        const li = btn.closest('.nav-dropdown');
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = li.classList.contains('open');
+            document.querySelectorAll('.nav-dropdown.open').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                li.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.nav-dropdown.open').forEach(el => {
+            el.classList.remove('open');
+            el.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+    });
+});

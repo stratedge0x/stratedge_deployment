@@ -122,6 +122,47 @@ function initNavbar() {
   });
 }
 
+// ── Dropdown nav (Services menu) ───────────────────────────
+function initDropdownNav() {
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
+    const li = btn.closest('.nav-dropdown');
+
+    // Click to toggle (mobile + accessibility)
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = li.classList.contains('open');
+      // Close any other open dropdowns
+      document.querySelectorAll('.nav-dropdown.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        li.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.nav-dropdown.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+}
+
+
 // ── Smooth active section highlight ────────────────────────
 function initActiveNav() {
   const sections = document.querySelectorAll('section[id]');
@@ -217,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 1. Navbar
   initNavbar();
+  initDropdownNav();
   initActiveNav();
   initParallax();
   initPillarGlow();
