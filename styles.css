@@ -156,7 +156,7 @@ body {
   letter-spacing: 0.18em;
   color: var(--text-muted);
   text-transform: uppercase;
-  vertical-align: middle;
+  line-height: 1;
 }
 
 /* PNG logo — used in navbar and footer */
