@@ -352,7 +352,6 @@ body {
   flex: 1;
 }
 
-
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -361,6 +360,8 @@ body {
   border: none;
   cursor: pointer;
   padding: 0.25rem;
+  z-index: 1101;
+  /* Ensure hamburger is above menu and overlay */
 }
 
 .nav-hamburger span {
@@ -368,7 +369,37 @@ body {
   width: 24px;
   height: 1.5px;
   background: var(--white);
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* Nav Overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 990;
+  /* Lower than navbar (1000) to avoid blocking interactions */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--transition);
+}
+
+.nav-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* 
@@ -1587,86 +1618,128 @@ body {
     display: flex;
   }
 
+  /* Side Drawer Layout */
   .nav-links.open {
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 70px;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    /* Strictly 100% viewport height */
+    background: rgba(10, 18, 35, 0.98);
+    backdrop-filter: blur(24px);
+    border-right: 1px solid var(--navy-border);
+    padding: 6rem 2rem 3rem;
+    z-index: 1100;
+    /* Increased to be clearly above overlay */
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  /* RTL Support for side drawer */
+  [dir="rtl"] .nav-links.open {
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 1px solid var(--navy-border);
+    transform: translateX(100%);
+  }
+
+  [dir="rtl"] .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-links.open a {
+    font-family: var(--font-sans);
+    /* Ensure font consistency */
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    padding: 0.85rem 0;
+    position: relative;
+    border-bottom: none;
+    /* Removed static border */
+    letter-spacing: 0.05em;
+  }
+
+  /* Animated Divider for Mobile Menu Items */
+  .nav-links.open li:not(:last-child)::after,
+  .nav-dropdown-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: rgba(10, 18, 35, 0.98);
-    border-top: 1px solid var(--navy-border);
-    padding: 3rem 1.5rem;
-    gap: 1.5rem;
-    align-items: flex-start;
-    z-index: 1000;
-    overflow-y: auto;
-    backdrop-filter: blur(20px);
+    height: 1px;
+    background:
+      linear-gradient(90deg, transparent 0%, rgba(255, 245, 200, 0.7) 50%, transparent 100%) no-repeat,
+      linear-gradient(90deg, transparent, var(--gold), transparent);
+    background-size: 40% 100%, 100% 100%;
+    animation: goldLineSweep 7s ease-in-out infinite;
+    opacity: 0.3;
   }
 
   .nav-dropdown {
     width: 100%;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    position: relative;
   }
 
   .nav-dropdown-toggle {
     width: 100%;
     justify-content: space-between;
-    font-size: 1.25rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(184, 151, 90, 0.15);
+    font-size: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: none;
+    /* Removed static border */
+    position: relative;
   }
 
   .nav-dropdown-menu {
-    position: static;
-    transform: none;
-    min-width: 100%;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
     background: transparent;
     border: none;
-    border-inline-start: 1px solid var(--gold-dark);
-    margin-block-start: 0.75rem;
-    margin-block-end: 0.75rem;
+    margin-block: 0.5rem 1rem;
     opacity: 1;
     pointer-events: all;
     display: none;
     box-shadow: none;
-    padding-inline-start: 1rem;
+    padding-inline-start: 0;
     backdrop-filter: none;
   }
 
   .nav-dropdown.open .nav-dropdown-menu {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    animation: fadeIn 0.4s ease;
-    transform: none;
-    /* Crucial: Remove desktop translateX(-50%) */
+    gap: 0;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .nav-dropdown-menu li {
+    width: 100%;
   }
 
   .nav-dropdown-menu li a {
     padding: 0.75rem 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     white-space: normal;
     line-height: 1.4;
-    display: block;
-  }
-
-  .nav-dropdown-menu li:last-child a {
-    border-bottom: none;
-  }
-
-  .nav-links.open li {
-    width: 100%;
-  }
-
-  .nav-links.open a {
-    font-size: 1.25rem;
-    display: block;
-    width: 100%;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .nav-links.open li:last-child a,
@@ -1674,9 +1747,58 @@ body {
     border-bottom: none;
   }
 
-  .nav-cta {
-    margin-top: 1rem;
+  /* Bottom Buttons Container (Horizontal Alignment) */
+  .nav-links.open {
+    padding-bottom: 4rem;
+  }
+
+  .nav-cta,
+  .lang-switch {
+    margin: 0 !important;
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    min-width: 120px;
+    box-sizing: border-box;
+    /* Ensure border is included in dimensions */
+  }
+
+  .lang-switch {
+    border: 1px solid var(--gold) !important;
+    /* Force visible border */
+  }
+
+  /* Target the bottom area where buttons are */
+  .nav-links.open li:nth-last-child(2),
+  .nav-links.open li:last-child {
+    display: inline-block;
+    width: auto;
+  }
+
+  /* Horizontal buttons wrapper simulation */
+  .nav-links.open {
+    display: block;
+    /* Use block to allow mixing flex li and inline-block li */
+  }
+
+  .nav-links.open li {
+    display: block;
+  }
+
+  /* Special handling for the last two li items (Engage Us and Language) */
+  .nav-links.open li:has(.nav-cta),
+  .nav-links.open li:has(.lang-switch) {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+    margin-top: 2rem;
+  }
+
+  .nav-links.open li:has(.nav-cta) {
+    margin-inline-end: 1.5rem;
   }
 
   .hero-actions {
@@ -1688,6 +1810,13 @@ body {
     width: 100%;
     min-width: unset;
   }
+}
+
+/* LTR Numbers Utility for RTL layouts */
+.ltr-num {
+  direction: ltr !important;
+  display: inline-block;
+  unicode-bidi: embed;
 }
 
 /* 

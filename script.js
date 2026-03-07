@@ -116,11 +116,31 @@ function initNavbar() {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // Hamburger
+  // Hamburger & Mobile Menu Logic
   const hamburger = document.getElementById('navHamburger');
   const links = document.getElementById('navLinks');
-  hamburger?.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
+
+  // Create overlay if it doesn't exist
+  let overlay = document.querySelector('.nav-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'nav-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  const toggleMenu = (force) => {
+    const isOpen = links.classList.toggle('open', force);
+    hamburger?.classList.toggle('active', isOpen);
+    overlay?.classList.toggle('visible', isOpen);
+
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none'; // Prevent touch scrolling
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+
     if (isOpen) {
       // Auto-expand dropdowns on mobile as requested
       links.querySelectorAll('.nav-dropdown').forEach(li => {
@@ -128,10 +148,14 @@ function initNavbar() {
         li.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'true');
       });
     }
-  });
+  };
+
+  hamburger?.addEventListener('click', () => toggleMenu());
+  overlay?.addEventListener('click', () => toggleMenu(false));
+
   // Close on link click
   links?.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
+    a.addEventListener('click', () => toggleMenu(false));
   });
 }
 
