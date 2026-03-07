@@ -1654,3 +1654,117 @@ body {
     min-width: unset;
   }
 }
+
+/* 
+   SOCIAL LINKS & WHATSAPP
+*/
+.footer-socials {
+  display: flex;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.social-link {
+  color: var(--text-muted);
+  transition: color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.social-link:hover {
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.footer-tel {
+  display: inline-block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.footer-tel:hover {
+  color: var(--gold);
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #25D366;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out);
+  margin-top: 1rem;
+}
+
+.btn-whatsapp:hover {
+  background: #25D366;
+  color: var(--navy);
+  border-color: #25D366;
+}
+
+.btn-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(184, 151, 90, 0.1);
+  border: 1px solid rgba(184, 151, 90, 0.3);
+  color: var(--gold);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.3s var(--ease-out);
+  margin-top: 1rem;
+}
+
+.btn-phone:hover {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+.btn-whatsapp svg,
+.btn-phone svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-channels {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Founder Socials */
+.founder-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--navy-border);
+}

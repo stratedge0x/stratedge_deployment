@@ -25,7 +25,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://stratedge-advisory.com/strategic-diagnostic.html</loc>
+    <loc>https://stratedge-advisory.com/soft-landing.html</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stratedge-advisory.com/strategic-advisory.html</loc>
     <lastmod>2026-03-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
