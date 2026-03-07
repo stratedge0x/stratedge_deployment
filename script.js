@@ -321,6 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => el.classList.add('visible'), idx * 120);
   });
 
+  // Solutions for Oman cards reveal
+  observe('.solution-card', el => {
+    const idx = [...document.querySelectorAll('.solution-card')].indexOf(el);
+    setTimeout(() => el.classList.add('visible'), idx * 100);
+  });
+
   // 5. Vision 2040 pillar items
   observe('.vision-pillar-item', el => {
     const items = document.querySelectorAll('.vision-pillar-item');

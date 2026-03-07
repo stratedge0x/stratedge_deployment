@@ -24,25 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const tocLinks = document.querySelectorAll('.toc-link');
     const sections = [...document.querySelectorAll('.svc-chapter, .svc-pillars-recovery, .recovery-pillar')];
 
-    function updateActiveToc() {
-        const scrollY = window.scrollY + 140;
+    // We use an IntersectionObserver to track which section is currently on screen
+    let activeId = sections.length > 0 ? sections[0].id : null;
 
-        // Default to the first section — ensures top-of-page has an active link
-        let current = sections.length > 0 ? sections[0].id : null;
-
-        sections.forEach(sec => {
-            // A section becomes active once its top edge has passed the scroll threshold
-            if (sec.offsetTop <= scrollY) current = sec.id;
+    const tocObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // When a section comes into view, mark it as active
+                activeId = entry.target.id;
+                updateTocLinks(activeId);
+            }
         });
+    }, {
+        // Trigger when a section is 20% down from the top of the viewport
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+    });
 
+    sections.forEach(sec => {
+        if (sec.id) {
+            tocObserver.observe(sec);
+        }
+    });
+
+    function updateTocLinks(id) {
         tocLinks.forEach(link => {
-            const href = link.getAttribute('href')?.slice(1);
-            link.classList.toggle('toc-active', href === current);
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const linkId = href.slice(1);
+                if (linkId === id) {
+                    link.classList.add('toc-active');
+                } else {
+                    link.classList.remove('toc-active');
+                }
+            }
         });
     }
 
-    window.addEventListener('scroll', updateActiveToc, { passive: true });
-    updateActiveToc();
+    // Set initial active link
+    updateTocLinks(activeId);
 
     // ── Scroll-reveal for chapters, pillars, etc. ─────────────
     const revealEls = document.querySelectorAll(

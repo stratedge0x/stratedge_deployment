@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Founder | StratEdge Advisory</title>
+    <meta name="description"
+        content="Meet Salim Abdullah Juma Alkahhali, the Founder of StratEdge Advisory. Discover his vision and mission in supporting businesses and investors in the Gulf region." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="about.css" />
+    <link rel="icon" type="image/png" href="images/logo_nobg.png" />
+
+    <!-- SEO & Social Media Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://stratedge-advisory.com/founder.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Founder | StratEdge Advisory" />
+    <meta property="og:description" content="Meet Salim Abdullah Juma Alkahhali, the Founder of StratEdge Advisory." />
+    <meta property="og:url" content="https://stratedge-advisory.com/founder.html" />
+    <meta property="og:image" content="https://stratedge-advisory.com/images/Salim.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Founder | StratEdge Advisory" />
+    <meta name="twitter:description" content="Meet Salim Abdullah Juma Alkahhali, the Founder of StratEdge Advisory." />
+    <meta name="twitter:image" content="https://stratedge-advisory.com/images/Salim.jpg" />
+
+    <style>
+        .founder-profile {
+            padding: 5rem 0;
+            background: var(--navy-mid);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ensure content stays above particles */
+        .founder-profile .about-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .founder-photo-column {
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-photo-wrapper {
+            position: relative;
+            border: 1px solid var(--navy-border);
+            background: var(--navy-light);
+            padding: 1rem;
+        }
+
+        .founder-photo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 248, 210, 0.7) 50%, transparent 100%) no-repeat,
+                linear-gradient(90deg, var(--gold), var(--gold-dark), transparent);
+            background-size: 35% 100%, 100% 100%;
+            animation: goldLineSweep 7s ease-in-out infinite;
+        }
+
+        .founder-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .founder-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            margin-top: 3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .founder-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .founder-content p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--white-dim);
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .founder-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="about-page">
+
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo_nobg.png" alt="StratEdge Advisory" class="logo-png" />
+                <span class="logo-text-group">
+                    <span class="logo-wordmark"><span class="logo-strat">Strat</span><span
+                            class="logo-edge">Edge</span></span>
+                    <span class="logo-divider">|</span>
+                    <span class="logo-advisory">Advisory</span>
+                </span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li class="nav-dropdown">
+                    <button class="nav-dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Services
+                        <svg class="nav-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 6l4 4 4-4" />
+                        </svg>
+                    </button>
+                    <ul class="nav-dropdown-menu" role="menu">
+                        <li><a href="business-transformation.html" role="menuitem">
+                                <span class="ddm-num">01</span>
+                                <span class="ddm-name">Business Transformation &amp; Recovery</span>
+                            </a></li>
+                        <li><a href="market-entry.html" role="menuitem">
+                                <span class="ddm-num">02</span>
+                                <span class="ddm-name">Market Entry &amp; Protection</span>
+                            </a></li>
+                        <li><a href="strategic-diagnostic.html" role="menuitem">
+                                <span class="ddm-num">03</span>
+                                <span class="ddm-name">Strategic Diagnostic</span>
+                            </a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="founder.html" class="nav-active">Founder</a></li>
+                <li><a href="index.html#vision">Vision 2040</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Engage Us</a></li>
+            </ul>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="about-hero">
+        <div class="svc-hero-bg">
+            <div class="svc-orb svc-orb-1"></div>
+            <div class="svc-orb svc-orb-2"></div>
+        </div>
+        <div class="hero-bg-grid"></div>
+        <div class="about-hero-inner">
+            <div class="svc-eyebrow">
+                <span class="svc-pillar-tag">LEADERSHIP</span>
+                <span class="svc-dot-divider">◆</span>
+                <span class="svc-category">FOUNDER</span>
+            </div>
+            <h1 class="about-hero-title">Salim Abdullah Juma Alkahhali</h1>
+            <p class="about-hero-lead">CEO &amp; Founder of StratEdge Advisory. A strategic visionary committed to
+                driving business excellence and empowering investment within the Gulf region.</p>
+        </div>
+    </section>
+
+    <main class="about-main">
+
+        <!-- FOUNDER PROFILE -->
+        <section class="founder-profile">
+            <!-- Floating Background Particles (Animation 3) -->
+            <div class="vision-bg">
+                <div class="vision-particle" style="--x:10%;--y:20%;--size:2px;--delay:0s"></div>
+                <div class="vision-particle" style="--x:25%;--y:60%;--size:3px;--delay:1s"></div>
+                <div class="vision-particle" style="--x:50%;--y:15%;--size:2px;--delay:2s"></div>
+                <div class="vision-particle" style="--x:75%;--y:60%;--size:3px;--delay:0.5s"></div>
+                <div class="vision-particle" style="--x:90%;--y:30%;--size:2px;--delay:1.5s"></div>
+                <div class="vision-particle" style="--x:60%;--y:80%;--size:2px;--delay:2.5s"></div>
+            </div>
+
+            <div class="about-container">
+                <div class="founder-grid">
+                    <div class="founder-photo-column">
+                        <div class="founder-photo-wrapper">
+                            <img src="images/Salim.jpg" alt="Salim Abdullah Juma Alkahhali" class="founder-photo" />
+                        </div>
+                    </div>
+
+                    <div class="founder-content">
+                        <h3>Professional Background &amp; Experience</h3>
+                        <p>With highly distinguished expertise across Gulf business strategy, financial restructuring,
+                            and regulatory navigation, Salim Abdullah Juma Alkahhali has built a reputation for
+                            delivering precision and actionable intelligence to key stakeholders. Having advised boards,
+                            executive teams, and high net-worth investors across the Sultanate, his strategic foresight
+                            provides the foundation for organizational resilience and scalable growth.</p>
+                        <p>Through robust analytical frameworks and deep local market insights, Salim has successfully
+                            guided enterprises through the most complex commercial challenges-ranging from enterprise
+                            recovery and distress management to initial market structuring for international investors
+                            looking to root their operations in the GCC.</p>
+
+                        <h3>The Founder's Message</h3>
+                        <p>StratEdge Advisory was founded with a clear mission: to help businesses, investors, and
+                            institutions navigate complexity and achieve sustainable growth through intelligent strategy
+                            and practical execution.</p>
+                        <p>With a strong understanding of regional markets and global business dynamics, our focus is on
+                            providing strategic insight, operational improvement, and growth advisory tailored to the
+                            evolving needs of modern organizations.</p>
+                        <p>We believe that successful organizations are built on three pillars: clear strategy,
+                            disciplined execution, and intelligent risk management. Our role is to support leaders in
+                            transforming vision into measurable results.</p>
+                        <p>At StratEdge Advisory, we work closely with entrepreneurs, investors, and institutions to
+                            unlock opportunities, strengthen governance, and build resilient business models.</p>
+                        <p>Our ambition is to contribute to economic development, innovation, and sustainable growth in
+                            alignment with the future vision of the region.</p>
+
+                        <h3>Founder's Vision</h3>
+                        <p>The vision is clear: to establish StratEdge Advisory as the premier boutique advisory firm in
+                            the GCC, known unequivocally for intellectual rigor, integrity, and measurable impact.
+                            Moving in lockstep with Oman’s Vision 2040, I envision a future where local and
+                            international enterprises operate with maximum efficiency, contributing significantly to a
+                            diversified and robust regional economy.</p>
+
+                        <h3>Mission in Supporting Businesses &amp; Investors</h3>
+                        <p>Our core mission is protection of growth and neutralisation of downside risk. My team
+                            and I dedicate ourselves to empowering investors to make bold, calculated market entries and
+                            supporting businesses through critical transformation phases.</p>
+                        <p>By delivering confidential, independent, and honest counsel, we ensure that every client
+                            receives guidance that holds under the strictest legal, strategic, and commercial scrutiny.
+                            From structuring market penetration strategies to orchestrating turnaround efforts, our
+                            objective is to ensure clear outcomes where the stakes are highest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="about-cta">
+            <div class="about-container">
+                <div class="about-cta-inner">
+                    <div class="section-tag">BEGIN THE CONVERSATION</div>
+                    <h2 class="about-cta-title">Ready to Work Together?</h2>
+                    <p class="about-cta-desc">Every engagement starts with a confidential conversation. Tell us about
+                        your challenge and we will respond within 24 hours.</p>
+                    <a href="index.html#contact" class="btn-primary">Request a Consultation</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/logo_nobg.png" alt="StratEdge Advisory" class="logo-png" />
+                    <span class="logo-wordmark"><span class="logo-strat">Strat</span><span
+                            class="logo-edge">Edge</span></span>
+                    <span class="logo-divider">|</span>
+                    <span class="logo-advisory">Advisory</span>
+                </div>
+                <p class="footer-tagline">Strategic Intelligence. Gulf Expertise.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html#expertise">Expertise</a>
+                <a href="about.html">About Us</a>
+                <a href="index.html#vision">Vision 2040</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-service.html">Terms of Service</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 StratEdge Advisory. All rights reserved. | Muscat, Sultanate of Oman</p>
+                <p class="footer-conf">All client engagements are governed by strict confidentiality agreements.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
