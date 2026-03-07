@@ -38,7 +38,7 @@
     height: 700px;
     background: radial-gradient(circle, rgba(30, 70, 180, 0.7), transparent 65%);
     top: -200px;
-    right: -100px;
+    inset-inline-end: -100px;
     animation: orbFloat 14s ease-in-out infinite;
 }
 
@@ -47,7 +47,7 @@
     height: 450px;
     background: radial-gradient(circle, rgba(184, 151, 90, 0.35), transparent 65%);
     bottom: 0;
-    left: 5%;
+    inset-inline-start: 5%;
     animation: orbFloat 10s ease-in-out infinite 2s reverse;
 }
 

@@ -16,11 +16,21 @@
   --text-muted: #8899AA;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', 'Cairo', system-ui, sans-serif;
+  --font-arabic: 'Cairo', sans-serif;
   --font-mono: 'Space Mono', monospace;
 
   --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* RTL Support Infrastructure */
+[dir="rtl"] {
+  font-family: var(--font-arabic);
+}
+
+[dir="rtl"] body {
+  font-family: var(--font-arabic);
 }
 
 /*  Reset & Base  */
@@ -132,7 +142,7 @@ body {
   object-fit: contain;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 0.4rem;
+  margin-inline-end: 0.4rem;
   filter: drop-shadow(0 0 4px rgba(95, 216, 250, 0.2));
 }
 
@@ -330,9 +340,10 @@ body {
 
 .ddm-num {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.15em;
-  color: var(--gold-dark);
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-inline-end: 0.4rem;
+  opacity: 0.6;
   flex-shrink: 0;
 }
 
@@ -572,6 +583,24 @@ body {
   border-color: var(--gold);
   color: var(--gold);
   transform: translateY(-2px);
+}
+
+.lang-switch {
+  font-family: var(--font-arabic);
+  font-weight: 500;
+  color: var(--gold);
+  border: 1px solid rgba(184, 151, 90, 0.3);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-inline-start: 1rem;
+}
+
+.lang-switch:hover {
+  background: rgba(184, 151, 90, 0.1);
+  border-color: var(--gold);
 }
 
 /* Scroll indicator */
@@ -916,10 +945,11 @@ body {
 }
 
 .service-dot {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: var(--gold);
+  margin-inline-end: 0.6rem;
   flex-shrink: 0;
   transition: transform 0.3s;
 }
@@ -1359,8 +1389,13 @@ body {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
-  padding-right: 2.5rem;
+  padding-inline-end: 2.5rem;
   cursor: pointer;
+}
+
+.founder-content {
+  flex: 1;
+  padding-inline-end: 2.5rem;
 }
 
 .form-group select option {
@@ -1589,14 +1624,14 @@ body {
     min-width: 100%;
     background: transparent;
     border: none;
-    border-left: 1px solid var(--gold-dark);
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    border-inline-start: 1px solid var(--gold-dark);
+    margin-block-start: 0.75rem;
+    margin-block-end: 0.75rem;
     opacity: 1;
     pointer-events: all;
     display: none;
     box-shadow: none;
-    padding: 0 0 0 1rem;
+    padding-inline-start: 1rem;
     backdrop-filter: none;
   }
 

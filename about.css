@@ -136,8 +136,8 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     height: 2px;
     background:
         linear-gradient(90deg, transparent 0%, rgba(255, 248, 210, 0.65) 50%, transparent 100%) no-repeat,
@@ -145,7 +145,7 @@
     background-size: 30% 100%, 100% 100%;
     animation: goldLineSweep 6s ease-in-out infinite;
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: inline-start;
     transition: transform 0.4s var(--ease-out);
 }
 
@@ -224,8 +224,8 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     height: 2px;
     background:
         linear-gradient(90deg, transparent 0%, rgba(255, 248, 210, 0.7) 50%, transparent 100%) no-repeat,
@@ -237,7 +237,7 @@
 /* Photo placeholder */
 .team-photo-placeholder {
     background: linear-gradient(160deg, #0E1826, #111D32);
-    border-right: 1px solid var(--navy-border);
+    border-inline-end: 1px solid var(--navy-border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -312,8 +312,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--navy-border);
+    padding-block-start: 1.25rem;
+    border-block-start: 1px solid var(--navy-border);
 }
 
 .team-tags span {
@@ -339,8 +339,8 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     height: 1px;
     background:
         linear-gradient(90deg, transparent 0%, rgba(255, 245, 200, 0.6) 50%, transparent 100%) no-repeat,
@@ -380,8 +380,8 @@
     }
 
     .team-photo-placeholder {
-        border-right: none;
-        border-bottom: 1px solid var(--navy-border);
+        border-inline-end: none;
+        border-block-end: 1px solid var(--navy-border);
         min-height: 200px;
     }
 

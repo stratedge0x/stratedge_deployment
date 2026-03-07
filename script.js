@@ -4,10 +4,16 @@
 'use strict';
 
 // ── Typewriter ──────────────────────────────────────────────
-const TYPEWRITER_PHRASES = [
+const TYPEWRITER_PHRASES_EN = [
   'Strategic Intelligence\nfor the Gulf.',
   'Precision Advisory.\nProtected Investments.',
   'Vision 2040\nAligned Strategy.',
+];
+
+const TYPEWRITER_PHRASES_AR = [
+  'استخبارات استراتيجية\nللخليج.',
+  'استشارات دقيقة.\nاستثمارات محمية.',
+  'رؤية ٢٠٤٠\nاستراتيجية متوافقة.',
 ];
 
 class Typewriter {
@@ -277,11 +283,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const actions = document.getElementById('heroActions');
   const twText = document.getElementById('typewriterText');
 
+  const isAr = document.documentElement.lang === 'ar';
+  const phrases = isAr ? TYPEWRITER_PHRASES_AR : TYPEWRITER_PHRASES_EN;
+
   // Show label
   setTimeout(() => label?.classList.add('visible'), 400);
 
   // Start typewriter after label appears
-  const tw = new Typewriter(twText, TYPEWRITER_PHRASES, {
+  const tw = new Typewriter(twText, phrases, {
     typeSpeed: 60,
     deleteSpeed: 30,
     pauseAfter: 2800,
