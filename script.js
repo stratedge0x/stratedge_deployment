@@ -3,6 +3,84 @@
    ============================================================ */
 'use strict';
 
+/**
+ * STRATEGE ADVISORY — GLOBAL CONFIGURATION
+ * Central destination for contact details & social media links
+ */
+const STRATEGE_CONFIG = {
+  social: {
+    linkedin: 'https://www.linkedin.com/in/stratedge-advisory-om/',
+    x: 'https://x.com/StratEdgeOman',
+    whatsapp: 'https://api.whatsapp.com/send?phone=96894774000',
+  },
+  contact: {
+    phone_raw: '+96894774000',
+    phone_display: '+968 9477 4000'
+  }
+};
+
+/**
+ * Updates all social and contact links across the site.
+ * Targets:
+ * - .social-link[aria-label="LinkedIn"]
+ * - .social-link[aria-label="X (Twitter)"]
+ * - .social-link[aria-label="WhatsApp"]
+ * - .btn-whatsapp
+ * - .btn-phone
+ * - .footer-tel
+ */
+function initSocialLinks() {
+  // 1. LinkedIn
+  document.querySelectorAll('a[aria-label="LinkedIn"]').forEach(a => {
+    a.href = STRATEGE_CONFIG.social.linkedin;
+  });
+
+  // 2. X (Twitter)
+  document.querySelectorAll('a[aria-label="X (Twitter)"]').forEach(a => {
+    a.href = STRATEGE_CONFIG.social.x;
+  });
+
+  // 3. WhatsApp
+  document.querySelectorAll('.btn-whatsapp, a[aria-label="WhatsApp"]').forEach(a => {
+    a.href = STRATEGE_CONFIG.social.whatsapp;
+  });
+
+  // 4. Phone
+  document.querySelectorAll('.btn-phone, .footer-tel').forEach(a => {
+    a.href = `tel:${STRATEGE_CONFIG.contact.phone_raw}`;
+    // Only update inner text if it contains a phone-like pattern to avoid breaking button layouts
+    if (a.textContent.includes('968') || a.classList.contains('footer-tel')) {
+       // Preserving icons if they exist
+       const svg = a.querySelector('svg');
+       if (svg) {
+         // Re-construct with SVG + Number
+         a.innerHTML = '';
+         a.appendChild(svg);
+         a.appendChild(document.createTextNode(' ' + STRATEGE_CONFIG.contact.phone_display));
+       } else {
+         a.textContent = STRATEGE_CONFIG.contact.phone_display;
+       }
+    }
+  });
+
+  // 5. JSON-LD Structured Data Update (Optional but good for consistency)
+  const schemaScript = document.querySelector('script[type="application/ld+json"]');
+  if (schemaScript) {
+    try {
+      const data = JSON.parse(schemaScript.textContent);
+      if (data.telephone) data.telephone = STRATEGE_CONFIG.contact.phone_raw;
+      if (data.sameAs) {
+        data.sameAs = data.sameAs.map(link => {
+          if (link.includes('linkedin.com')) return STRATEGE_CONFIG.social.linkedin;
+          return link;
+        });
+      }
+      schemaScript.textContent = JSON.stringify(data, null, 2);
+    } catch (e) { console.warn('Schema refinement skipped: invalid JSON'); }
+  }
+}
+
+
 // ── Typewriter ──────────────────────────────────────────────
 const TYPEWRITER_PHRASES_EN = [
   'Strategic Intelligence\nfor the Gulf.',
@@ -299,6 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNav();
   initParallax();
   initPillarGlow();
+  initSocialLinks();
   initForm();
 
   // 2. Hero entrance sequence

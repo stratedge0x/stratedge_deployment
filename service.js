@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Service pages always show the solid nav
     nav?.classList.add('scrolled');
 
+    // Initialize Social Media and Contact Links (if defined in script.js context)
+    if (typeof initSocialLinks === 'function') {
+        initSocialLinks();
+    }
+
     // Hamburger
     const hamburger = document.getElementById('navHamburger');
     const links = document.getElementById('navLinks');
