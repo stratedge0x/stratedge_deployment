@@ -367,4 +367,76 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => item.classList.add('visible'), i * 180);
     });
   });
+
+  // 6. Centralized Site Configuration
+  applySiteConfig();
 });
+
+/* ============================================================
+   CENTRALIZED CONFIGURATION (Single Source of Truth)
+   ============================================================ */
+const SITE_CONFIG = {
+  social: {
+    linkedin: 'https://www.linkedin.com/in/stratedge-advisory-om',
+    x: 'https://x.com/StratEdgeOM',
+  },
+  contact: {
+    phone: '+96894774000',
+    whatsapp: '96894774000', // Just numbers for the API link
+    phoneDisplay: {
+      en: '+968 9477 4000',
+      ar: '+٩٦٨ ٩٤٧٧ ٤٠٠٠'
+    }
+  }
+};
+
+/**
+ * Automatically applies SITE_CONFIG values to all matching elements on the page.
+ * Targets elements by class and aria-label to ensure consistency.
+ */
+function applySiteConfig() {
+  const isAr = document.documentElement.lang === 'ar';
+
+  // 1. Update LinkedIn links
+  document.querySelectorAll('a[aria-label="LinkedIn"], .social-link[aria-label="LinkedIn"]').forEach(a => {
+    a.href = SITE_CONFIG.social.linkedin;
+  });
+
+  // 2. Update X (Twitter) links
+  document.querySelectorAll('a[aria-label*="X (Twitter)"], a[aria-label="X"], .social-link[aria-label*="X"]').forEach(a => {
+    a.href = SITE_CONFIG.social.x;
+  });
+
+  // 3. Update WhatsApp links
+  document.querySelectorAll('.btn-whatsapp, a[aria-label="WhatsApp"], .social-link[aria-label="WhatsApp"]').forEach(a => {
+    a.href = `https://api.whatsapp.com/send?phone=${SITE_CONFIG.contact.whatsapp}`;
+    // Update text if it's a simple text-containing button
+    if (a.classList.contains('btn-whatsapp') && a.childNodes.length > 0) {
+      // Find the text node (usually after the SVG)
+      a.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 1) {
+          node.textContent = isAr ? 'واتساب' : 'WhatsApp';
+        }
+      });
+    }
+  });
+
+  // 4. Update Phone links
+  document.querySelectorAll('.btn-phone, .footer-tel').forEach(a => {
+    a.href = `tel:${SITE_CONFIG.contact.phone}`;
+    
+    const displayPhone = isAr ? SITE_CONFIG.contact.phoneDisplay.ar : SITE_CONFIG.contact.phoneDisplay.en;
+    
+    // For footer-tel or buttons, update the text content
+    if (a.classList.contains('footer-tel')) {
+      a.textContent = displayPhone;
+    } else {
+      // For buttons with SVG, update only the text node
+      a.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 1) {
+          node.textContent = displayPhone;
+        }
+      });
+    }
+  });
+}
