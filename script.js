@@ -113,7 +113,12 @@ function initPillarGlow() {
 function initNavbar() {
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+    // On service pages, the navbar is always scrolled (solid)
+    if (document.body.classList.contains('service-page')) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }
   }, { passive: true });
 
   // Hamburger & Mobile Menu Logic
@@ -378,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const SITE_CONFIG = {
   social: {
     linkedin: 'https://www.linkedin.com/in/stratedge-advisory-om',
-    x: 'https://x.com/StratEdgeOM',
+    x: 'https://x.com/StratEdgeOman',
   },
   contact: {
     phone: '+96894774000',
@@ -424,9 +429,9 @@ function applySiteConfig() {
   // 4. Update Phone links
   document.querySelectorAll('.btn-phone, .footer-tel').forEach(a => {
     a.href = `tel:${SITE_CONFIG.contact.phone}`;
-    
+
     const displayPhone = isAr ? SITE_CONFIG.contact.phoneDisplay.ar : SITE_CONFIG.contact.phoneDisplay.en;
-    
+
     // For footer-tel or buttons, update the text content
     if (a.classList.contains('footer-tel')) {
       a.textContent = displayPhone;
