@@ -36,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Pause at end of word
             typingSpeed = 2000;
             isDeleting = true;
+
+            // Trigger subtitle & actions visibility when the first word finishes typing
+            if (currentTextIndex === 0) {
+                careersSubtitle?.classList.add('visible');
+                careersActions?.classList.add('visible');
+            }
+
         } else if (isDeleting && currentCharIndex === 0) {
             isDeleting = false;
             // Move to next word
@@ -47,7 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, typingSpeed);
     }
     
-    // Start typewriter
+    
+    const careersLabel = document.getElementById('heroLabel');
+    const careersSubtitle = document.getElementById('heroSubtitle');
+    const careersActions = document.getElementById('heroActions');
+
+    // Show label shortly after load
+    setTimeout(() => careersLabel?.classList.add('visible'), 400);
+
+    // Start typewriter a bit after the label
     setTimeout(type, 1000);
 
 

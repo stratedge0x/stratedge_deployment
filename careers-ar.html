@@ -117,15 +117,15 @@
         </div>
 
         <div class="careers-hero-content">
-            <div class="hero-label visible" id="heroLabel">الوظائف في ستراتيدج</div>
+            <div class="hero-label" id="heroLabel">الوظائف في ستراتيدج</div>
             <h1 class="careers-hero-title">
                 <span id="careersTypewriterTextAr" style="color: var(--white);"></span><span class="typewriter-cursor">|</span>
             </h1>
-            <p class="hero-subtitle visible">
+            <p class="hero-subtitle" id="heroSubtitle">
                 نحن نبحث عن مفكرين استراتيجيين نخبويين لتقديم دقة استشارية،<br />
                 ودفع تحول الأعمال، والارتقاء بالخليج.
             </p>
-            <div class="hero-actions visible">
+            <div class="hero-actions" id="heroActions">
                 <a href="#culture" class="btn-primary">ثقافتنا</a>
                 <a href="#openings" class="btn-ghost">عرض الشواغر</a>
             </div>
@@ -395,6 +395,12 @@
               if (!isDeleting && currentCharIndex === currentText.length) {
                   typingSpeed = 2000;
                   isDeleting = true;
+
+                  if (currentTextIndex === 0) {
+                      careersSubtitle?.classList.add('visible');
+                      careersActions?.classList.add('visible');
+                  }
+
               } else if (isDeleting && currentCharIndex === 0) {
                   isDeleting = false;
                   currentTextIndex = (currentTextIndex + 1) % texts.length;
@@ -404,6 +410,12 @@
               setTimeout(type, typingSpeed);
           }
           
+          const careersLabel = document.getElementById('heroLabel');
+          const careersSubtitle = document.getElementById('heroSubtitle');
+          const careersActions = document.getElementById('heroActions');
+
+          setTimeout(() => careersLabel?.classList.add('visible'), 400);
+
           setTimeout(type, 1000);
       });
     </script>

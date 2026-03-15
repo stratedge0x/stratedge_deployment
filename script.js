@@ -311,25 +311,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const actions = document.getElementById('heroActions');
   const twText = document.getElementById('typewriterText');
 
-  const isAr = document.documentElement.lang === 'ar';
-  const phrases = isAr ? TYPEWRITER_PHRASES_AR : TYPEWRITER_PHRASES_EN;
+  if (twText) {
+    const isAr = document.documentElement.lang === 'ar';
+    const phrases = isAr ? TYPEWRITER_PHRASES_AR : TYPEWRITER_PHRASES_EN;
 
-  // Show label
-  setTimeout(() => label?.classList.add('visible'), 400);
+    // Show label
+    setTimeout(() => label?.classList.add('visible'), 400);
 
-  // Start typewriter after label appears
-  const tw = new Typewriter(twText, phrases, {
-    typeSpeed: 60,
-    deleteSpeed: 30,
-    pauseAfter: 2800,
-    pauseBefore: 500,
-    onComplete: () => {
-      // Reveal subtitle & CTA after first phrase is typed out
-      subtitle?.classList.add('visible');
-      actions?.classList.add('visible');
-    },
-  });
-  tw.start(900);
+    // Start typewriter after label appears
+    const tw = new Typewriter(twText, phrases, {
+      typeSpeed: 60,
+      deleteSpeed: 30,
+      pauseAfter: 2800,
+      pauseBefore: 500,
+      onComplete: () => {
+        // Reveal subtitle & CTA after first phrase is typed out
+        subtitle?.classList.add('visible');
+        actions?.classList.add('visible');
+      },
+    });
+    tw.start(900);
+  }
 
   // 3. Stats counter animation on scroll
   const statCards = document.querySelectorAll('.stat-card');
